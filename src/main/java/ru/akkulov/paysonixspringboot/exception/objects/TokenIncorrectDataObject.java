@@ -1,4 +1,4 @@
-package ru.akkulov.paysonixspringboot.exception;
+package ru.akkulov.paysonixspringboot.exception.objects;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

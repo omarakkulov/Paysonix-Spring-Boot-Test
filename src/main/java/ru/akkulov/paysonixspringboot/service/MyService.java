@@ -1,7 +1,7 @@
 package ru.akkulov.paysonixspringboot.service;
 
 import org.springframework.stereotype.Component;
-import ru.akkulov.paysonixspringboot.model.MyResponse;
+import ru.akkulov.paysonixspringboot.model.Response;
 import ru.akkulov.paysonixspringboot.model.Signature;
 
 import java.util.TreeMap;
@@ -10,28 +10,28 @@ import java.util.TreeMap;
 public interface MyService {
 
     /**
-     * Возвращает объект с вычисленным значением Hmac внутри
+     * Returns an object with the calculated Hmac value inside
      *
-     * @param id     operationId из url запроса
-     * @param params отсортированные по ключу параметры типа ключ-значение из тела запроса
-     * @return объект типа {@link Signature}
+     * @param id     operationId from url
+     * @param params parameters sorted by key from request body
+     * @return type {@link Signature}
      */
     Signature getSignature(int id, TreeMap<String, String> params);
 
     /**
-     * Возвращает объект для HTTP ответа
+     * Returns an object for the HTTP response
      *
-     * @param id     operationId из url запроса
-     * @param params отсортированные по ключу параметры из тела запроса
-     * @return объект типа {@link MyResponse}
+     * @param id     operationId operationId from url
+     * @param params parameters sorted by key from request body
+     * @return type {@link Response}
      */
-    MyResponse response(int id, TreeMap<String, String> params);
+    Response response(int id, TreeMap<String, String> params);
 
     /**
-     * Возвращает Hmac по ключу от строки, поступающей в параметрах метода
+     * Returns Hmac by key from a string
      *
-     * @param key           ключ шифрования
-     * @param valueToDigest строка, которая будет шифроваться
+     * @param key           algorithm key
+     * @param valueToDigest the string to be hashed
      * @return {@link String}
      */
     String getHmacSHA256(String key, String valueToDigest);

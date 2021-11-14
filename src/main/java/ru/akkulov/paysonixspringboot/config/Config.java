@@ -6,9 +6,11 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource("classpath:myApp.properties")
-public class MyConfig {
+public class Config {
+
     @Bean
     public StringBuilder getStringBuilderBean() {
         return new StringBuilder();
     }
+
 }

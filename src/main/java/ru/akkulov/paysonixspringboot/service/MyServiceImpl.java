@@ -4,7 +4,8 @@ import com.google.common.hash.Hashing;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.akkulov.paysonixspringboot.model.MyResponse;
+import ru.akkulov.paysonixspringboot.exception.BadRequestException;
+import ru.akkulov.paysonixspringboot.model.Response;
 import ru.akkulov.paysonixspringboot.model.Signature;
 
 import java.nio.charset.StandardCharsets;
@@ -17,44 +18,40 @@ import java.util.TreeMap;
 public class MyServiceImpl implements MyService {
     private final StringBuilder sb;
 
-    @Value("${app.key}")
+//    @Value("${app.key}")
+    @Value("${HMAC_KEY}")
     private String key;
 
     @Override
     public Signature getSignature(int id, TreeMap<String, String> params) {
+        if (params.isEmpty()) {
+            throw new BadRequestException("Data is empty!");
+        }
 
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            sb.append(entry.getKey());
-            sb.append("=");
-            sb.append(entry.getValue());
-            sb.append("&");
+            sb.append(String.format("%s=%s&", entry.getKey(), entry.getValue()));
         }
-        // удаляем последнее значение "&" из конца строки вида "name1=value1&...nameN=valueN"
+
+        // remove the last value "&" from the end of the string like "name1=value1&...nameN=valueN"
         if (sb.length() > 0) {
-            sb.delete(sb.length() - 1, sb.length() + 1);
+            sb.setLength(sb.length() - 1);
         }
 
         String strFromParameters = sb.toString();
         String gHmac = getHmacSHA256(key, strFromParameters);
 
-        // решение для пустого json объекта "{}"
-        if (strFromParameters.equals("")) {
-            strFromParameters = "Data is empty!";
-            return new Signature(strFromParameters, strFromParameters);
-        }
-
-        // Очищаем данные из стрингбилдера, чтобы при запущенном сервере информация обнулялась,
-        // а не записывалась поверх старой
+        // clear data from stringBuilder so that when the server is running,
+        // the information is reset to zero, instead of overwriting the old one
         sb.setLength(0);
 
         return new Signature(strFromParameters, gHmac);
     }
 
     @Override
-    public MyResponse response(int id, TreeMap<String, String> params) {
+    public Response response(int id, TreeMap<String, String> params) {
         Signature signature = getSignature(id, params);
 
-        return new MyResponse("success", Collections.singletonList(signature));
+        return new Response("success", Collections.singletonList(signature));
     }
 
     @Override

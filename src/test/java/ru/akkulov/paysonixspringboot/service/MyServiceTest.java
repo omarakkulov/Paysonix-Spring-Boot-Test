@@ -2,7 +2,7 @@ package ru.akkulov.paysonixspringboot.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.akkulov.paysonixspringboot.model.MyResponse;
+import ru.akkulov.paysonixspringboot.model.Response;
 import ru.akkulov.paysonixspringboot.model.Signature;
 
 import java.util.TreeMap;
@@ -60,7 +60,7 @@ class MyServiceTest {
         map.put("EFG", "four");
         map.put("OPQ", "seven");
 
-        MyResponse response = service.response(id, map);
+        Response response = service.response(id, map);
         assertThat(response.getSignatures().size()).isEqualTo(1);
     }
 

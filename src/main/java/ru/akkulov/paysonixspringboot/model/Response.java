@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder(toBuilder = true)
-public class MyResponse {
+public class Response {
 
     private String status;
 

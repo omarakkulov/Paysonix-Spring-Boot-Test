@@ -6,23 +6,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ru.akkulov.paysonixspringboot.exception.IncorrectTokenHeaderException;
-import ru.akkulov.paysonixspringboot.exception.TokenIncorrectDataObject;
+import ru.akkulov.paysonixspringboot.exception.TokenIncorrectHeaderException;
+import ru.akkulov.paysonixspringboot.exception.objects.TokenIncorrectDataObject;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
 
 @Component
-@WebFilter("api/hmac/*")
 public class TokenFilter extends OncePerRequestFilter {
     private static final Logger LOG = LoggerFactory.getLogger(TokenFilter.class);
 
-    @Value("${app.token}")
+//    @Value("${app.token}")
+    @Value(("${TOKEN}"))
     private String tokenFromConfig;
 
     @Override
@@ -30,26 +28,28 @@ public class TokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        LOG.info("Hello from TokenFilter...");
-
-        Enumeration<String> headerNames = request.getHeaders("token");
-        // пробегаемся по значением параметров из запроса и сравниваем токен из заголовков запроса
-        // со значением токена из конфиг-файла
+        // compare token value from request-headers with the token value from config file
         try {
-            if (headerNames != null) {
-                while (headerNames.hasMoreElements()) {
-                    String token = headerNames.nextElement();
-                    if (token.equals(tokenFromConfig)) {
-                        filterChain.doFilter(request, response);
-                    } else throw new IncorrectTokenHeaderException("Token is not valid!");
-                }
+            String token = request.getHeader("x-token");
+
+            if (token == null) {
+                LOG.info("Token value is null");
+                throw new TokenIncorrectHeaderException("Token is null!");
             }
-        } catch (IncorrectTokenHeaderException exception) {
+            if (token.equals(tokenFromConfig)) {
+                LOG.info("Token value is correct");
+                filterChain.doFilter(request, response);
+            } else {
+                LOG.info("Token value is not valid");
+                throw new TokenIncorrectHeaderException("Token is not valid!");
+            }
+
+        } catch (TokenIncorrectHeaderException exception) {
             setErrorResponse(HttpStatus.FORBIDDEN, response, exception);
         }
     }
 
-    // метод для отправки FORBIDDEN 403 http-код, когда пробрасывается IncorrectTokenHeaderException
+    // method for sending FORBIDDEN 403-http code when a TokenIncorrectHeaderException is thrown
     public void setErrorResponse(HttpStatus status, HttpServletResponse response, Throwable ex) {
         response.setStatus(status.value());
         response.setContentType("application/json");
@@ -57,7 +57,6 @@ public class TokenFilter extends OncePerRequestFilter {
         TokenIncorrectDataObject data = new TokenIncorrectDataObject(ex.getMessage());
         try {
             String json = data.convertToJson();
-            System.out.println(json);
             response.getWriter().write(json);
         } catch (IOException e) {
             e.printStackTrace();
