@@ -22,24 +22,11 @@
 5. Также были написаны тесты для сервисного слоя приложения в соответствующей для этого директории.
 
 6. Метод правильно отрабатывается, когда приходит объект такого типа:
-   {
-    "FGH": "five",
-    "ABC": "one",
-    "BCA": "two",
-    "LMN": "six",
-    "DBA": "three",
-    "EFG": "four"
-   }
+   ![](https://sun9-57.userapi.com/impg/1FXVohbJsr2If980n6QNf4pLNhYzkrvg2pf3cQ/NhtItzWvffU.jpg?size=257x187&quality=96&sign=27e24f2b6949b4410de8c5b7740ef38a&type=album)
 
    Релизации на что-то по типу объекта снизу не было, т.к. для этого надо согласовать все с фронтом.
-   {
-    "FGH": ["five", "four", "three"],
-    "ABC": "one",
-    "BCA": "two",
-    "LMN": "six",
-    "DBA": "three",
-    "EFG": "four"
-   }
+   ![](https://sun9-56.userapi.com/impg/MDpzZvOajH6Zsf0n1-AL5eynm3KhenBguKfROQ/vdwIYqNhjNE.jpg?size=297x277&quality=96&sign=1939ec9ce731a7b37b033dd322f2a200&type=album)
+
 
 6. Приложение находится на порте 8081, измените при надобности в application.properties:
       ###### server.port=${Свое значение}
