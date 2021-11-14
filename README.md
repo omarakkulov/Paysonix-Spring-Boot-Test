@@ -21,7 +21,7 @@
    
    ![](https://sun9-57.userapi.com/impg/1FXVohbJsr2If980n6QNf4pLNhYzkrvg2pf3cQ/NhtItzWvffU.jpg?size=257x187&quality=96&sign=27e24f2b6949b4410de8c5b7740ef38a&type=album)
 
-   Релизации на что-то по типу объекта снизу не было, т.к. для этого надо согласовать все с фронтом.
+   Релизации на что-то по типу такого сложного объекта снизу не было, т.к. для этого надо согласовать все с фронтом.
    ![](https://sun9-56.userapi.com/impg/MDpzZvOajH6Zsf0n1-AL5eynm3KhenBguKfROQ/vdwIYqNhjNE.jpg?size=297x277&quality=96&sign=1939ec9ce731a7b37b033dd322f2a200&type=album)
 
 
