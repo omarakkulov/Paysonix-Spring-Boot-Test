@@ -14,7 +14,7 @@
    
 4. Данные для запуска и работы приложения (токен, ключ для хэш-функции и порт запуска приложения) берутся из переменных окружения
    TOKEN, HMAC_KEY и PORT.
-   https://sun9-14.userapi.com/impg/DkEADvsfv-26Xct4TqaCr4ptFIP0CKf9D3rZFw/dmXudvAP2Hw.jpg?size=914x64&quality=96&sign=4dc7371a6561f56598f81ac9ee653e13&type=album
+   ![](https://sun9-14.userapi.com/impg/DkEADvsfv-26Xct4TqaCr4ptFIP0CKf9D3rZFw/dmXudvAP2Hw.jpg?size=914x64&quality=96&sign=4dc7371a6561f56598f81ac9ee653e13&type=album)
 
 5. Также были написаны тесты для сервисного слоя приложения в соответствующей для этого директории.
 
