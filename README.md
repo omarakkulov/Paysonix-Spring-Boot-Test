@@ -1,5 +1,7 @@
 # Paysonix-Spring-Boot-Test
 
+![](https://sun9-62.userapi.com/impg/o5B0xbgYvkM_WMbDHTl0jwFK0zFNJK1tAwEi0Q/65WQ1rbzzCk.jpg?size=1280x736&quality=96&sign=a7fc9892fd04dafd6bc557c2b6b6047f&type=album)
+
 ## Подробнее про решение:
 
 1. Для вычисления хэш-функции использовалась реалиазация из библиотеки Google Guava;
