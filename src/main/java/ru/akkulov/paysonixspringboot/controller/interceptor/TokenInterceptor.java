@@ -22,6 +22,8 @@ public class TokenInterceptor implements HandlerInterceptor {
                              HttpServletResponse response,
                              Object handler) throws Exception {
 
+        LOG.info("preHandleMethod is executed");
+
         String token = request.getHeader("x-token");
 
         if (token == null) {
