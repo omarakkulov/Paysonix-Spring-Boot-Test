@@ -7,7 +7,7 @@ import ru.akkulov.paysonixspringboot.model.Signature;
 import java.util.TreeMap;
 
 @Component
-public interface MyService {
+public interface HmacService {
 
     /**
      * Returns an object with the calculated Hmac value inside

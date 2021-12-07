@@ -9,14 +9,14 @@ import java.util.TreeMap;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-class MyServiceTest {
+class HmacServiceTest {
     private StringBuilder sb;
-    private MyServiceImpl service;
+    private HmacServiceImpl service;
 
     @BeforeEach
     public void beforeEach() {
         sb = new StringBuilder();
-        service = new MyServiceImpl(sb);
+        service = new HmacServiceImpl(sb);
     }
 
     @Test

@@ -15,10 +15,9 @@ import java.util.TreeMap;
 
 @Service
 @Data
-public class MyServiceImpl implements MyService {
+public class HmacServiceImpl implements HmacService {
     private final StringBuilder sb;
 
-//    @Value("${app.key}")
     @Value("${HMAC_KEY}")
     private String key;
 
