@@ -1,4 +1,4 @@
-package ru.akkulov.paysonixspringboot.service;
+package ru.akkulov.paysonixspringboot.service.impl;
 
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import ru.akkulov.paysonixspringboot.exception.BadRequestException;
 import ru.akkulov.paysonixspringboot.model.Response;
 import ru.akkulov.paysonixspringboot.model.Signature;
+import ru.akkulov.paysonixspringboot.service.HmacService;
 
 @Service
 @Data

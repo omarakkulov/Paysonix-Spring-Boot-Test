@@ -20,7 +20,7 @@ import ru.akkulov.paysonixspringboot.service.HmacService;
 @Slf4j
 public class HmacController {
 
-  private final HmacService service;
+  private final HmacService hmacService;
 
   @PostMapping("hmac/{operationId}")
   public DeferredResult<ResponseEntity<Response>> response(@PathVariable int operationId, @RequestBody TreeMap<String, String> params) {
@@ -29,7 +29,7 @@ public class HmacController {
 
   private DeferredResult<ResponseEntity<Response>> successResponse(int operationId, TreeMap<String, String> params) {
     DeferredResult<ResponseEntity<Response>> deferredResult = new DeferredResult<>();
-    deferredResult.setResult(new ResponseEntity<>(service.response(operationId, params), HttpStatus.OK));
+    deferredResult.setResult(new ResponseEntity<>(hmacService.response(operationId, params), HttpStatus.OK));
 
     log.info("success response from thread:'{}'", Thread.currentThread().getName());
 

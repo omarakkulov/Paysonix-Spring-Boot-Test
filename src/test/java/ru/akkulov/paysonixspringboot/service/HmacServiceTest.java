@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.akkulov.paysonixspringboot.model.Response;
 import ru.akkulov.paysonixspringboot.model.Signature;
+import ru.akkulov.paysonixspringboot.service.impl.HmacServiceImpl;
 
 class HmacServiceTest {
 
