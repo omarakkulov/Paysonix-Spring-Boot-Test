@@ -1,42 +1,38 @@
 package ru.akkulov.paysonixspringboot.controller.interceptor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import ru.akkulov.paysonixspringboot.exception.TokenIncorrectHeaderException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 @Component
+@Slf4j
 public class TokenInterceptor implements HandlerInterceptor {
-    private final Logger LOG = LoggerFactory.getLogger(TokenInterceptor.class);
 
-    @Value(("${TOKEN}"))
-    private String tokenFromConfig;
+  @Value(("${TOKEN}"))
+  private String tokenFromConfig;
 
-    @Override
-    public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response,
-                             Object handler) throws Exception {
+  @Override
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
-        LOG.info("preHandleMethod is executed");
+    log.info("preHandleMethod is executed");
 
-        String token = request.getHeader("x-token");
+    String token = request.getHeader("x-token");
 
-        if (token == null) {
-            LOG.info("Token value is null");
-            throw new TokenIncorrectHeaderException("Token is null!");
-        }
-        if (token.equals(tokenFromConfig)) {
-            LOG.info("Token value is correct");
-            return true;
-        } else {
-            LOG.info("Token value is not valid");
-            throw new TokenIncorrectHeaderException("Token is not valid!");
-        }
-
+    if (token == null) {
+      log.info("Token value is null");
+      throw new TokenIncorrectHeaderException("Token is null!");
     }
+    if (token.equals(tokenFromConfig)) {
+      log.info("Token value is correct, token={}", token);
+      return true;
+    } else {
+      log.info("Token value is not valid");
+      throw new TokenIncorrectHeaderException("Token is not valid!");
+    }
+
+  }
 }

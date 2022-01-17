@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class Signature {
 
-    @JsonIgnore
-    private String strFromParameters;
+  @JsonIgnore
+  private String strFromParameters;
 
-    @JsonProperty("signature")
-    private String gHmac;
+  @JsonProperty("signature")
+  private String gHmac;
 }
