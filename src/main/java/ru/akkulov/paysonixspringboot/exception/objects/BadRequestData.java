@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class BadRequestDataObject {
+public class BadRequestData {
 
-    private String info;
+  private String info;
 }

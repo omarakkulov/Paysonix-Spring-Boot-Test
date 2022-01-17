@@ -5,25 +5,35 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.akkulov.paysonixspringboot.exception.BadRequestException;
-import ru.akkulov.paysonixspringboot.exception.objects.BadRequestDataObject;
+import ru.akkulov.paysonixspringboot.exception.TokenIncorrectHeaderException;
+import ru.akkulov.paysonixspringboot.exception.objects.BadRequestData;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler
-    public ResponseEntity<BadRequestDataObject> handleException(
-            BadRequestException exception) {
+  @ExceptionHandler
+  public ResponseEntity<BadRequestData> handleException(BadRequestException exception) {
 
-        BadRequestDataObject data = new BadRequestDataObject(exception.getMessage());
+    BadRequestData data = new BadRequestData(exception.getMessage());
 
-        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-    }
+    return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
+  }
 
-    @ExceptionHandler
-    public ResponseEntity<BadRequestDataObject> handleException(Exception exception) {
 
-        BadRequestDataObject data = new BadRequestDataObject(exception.getMessage());
+  @ExceptionHandler
+  public ResponseEntity<BadRequestData> handleException(TokenIncorrectHeaderException exception) {
 
-        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-    }
+    BadRequestData data = new BadRequestData(exception.getMessage());
+
+    return new ResponseEntity<>(data, HttpStatus.FORBIDDEN);
+  }
+
+
+  @ExceptionHandler
+  public ResponseEntity<BadRequestData> handleException(Exception exception) {
+
+    BadRequestData data = new BadRequestData(exception.getMessage());
+
+    return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
+  }
 }
