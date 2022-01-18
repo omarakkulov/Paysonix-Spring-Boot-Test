@@ -34,6 +34,8 @@ public class StepikParser {
     WebDriver driver = new ChromeDriver();
     driver.get("https://stepik.org/lesson/297509/step/1?unit=279269");
 
+    log.info("Попытка входа");
+
     Thread.sleep(6000);
     WebElement log_in = driver.findElement(By.xpath("//*[@id=\"ember135\"]"));
     log_in.click();
