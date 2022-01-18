@@ -21,6 +21,7 @@
     <google.guava.version>31.0.1-jre</google.guava.version>
     <jsoup.version>1.14.3</jsoup.version>
     <webdrivermanager.version>5.0.3</webdrivermanager.version>
+    <selenium.version>4.1.1</selenium.version>
   </properties>
 
   <dependencies>
@@ -55,12 +56,12 @@
       <version>${jsoup.version}</version>
     </dependency>
 
-<!--    &lt;!&ndash; https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>io.github.bonigarcia</groupId>-->
-<!--      <artifactId>webdrivermanager</artifactId>-->
-<!--      <version>${webdrivermanager.version }</version>-->
-<!--    </dependency>-->
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
 
   </dependencies>
 
